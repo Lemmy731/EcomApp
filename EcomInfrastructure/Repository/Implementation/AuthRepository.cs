@@ -30,7 +30,7 @@ namespace EcomInfrastructure.Repository.Implementation
                     return ApiResponse<User>.Failure(StatusCodes.Status404NotFound, "user not found");
                 }
                 var checkPassWord = await _userManager.CheckPasswordAsync(user, loginDto.Password);
-                if (checkPassWord)
+                if (checkPassWord != null)
                 {
                     return ApiResponse<User>.Success("user found", user); ;
                 }

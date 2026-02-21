@@ -1,4 +1,6 @@
 ﻿using Commons.DTO.Auth;
+using EcomApplication.Service.Implementation;
+using EcomApplication.Service.Interface;
 using EcomApplication.Service.JWT.Implementaion;
 using EcomApplication.Service.JWT.Interface;
 using EcomDomain.Entity;
@@ -20,6 +22,7 @@ namespace EcomPresentation.Extensions
         public static IServiceCollection AddCustomService(this IServiceCollection services)
         {
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddSwaggerGen(options =>
             {
@@ -31,8 +34,7 @@ namespace EcomPresentation.Extensions
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"JWT Authorization header using the Bearer scheme. 
-                                Enter 'Bearer' [space] and then your token in the text input below.
-                                Example: 'Bearer ey12345abcdef'",
+                                Enter your token",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,

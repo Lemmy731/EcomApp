@@ -1,3 +1,4 @@
+using EcomInfrastructure.DataContext;
 using EcomPresentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,11 @@ builder.Services.RegisterJwtServices(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+await app.SeedDataAsync();
+await app.SeedProduct();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

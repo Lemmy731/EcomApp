@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "8fd24320-3f79-6765-26b2-ad0c6df5ea09",
+    "Name": "Moccasin",
+    "TotalQuantity": 3,
+    "InStock": true
+  },
+  {
+    "Id": "586b4865-a995-e467-6762-c2e5c36507e7",
+    "Name": "Nike",
+    "TotalQuantity": 3,
+    "InStock": true
+  },
+  {
+    "Id": "cd134faf-f625-4885-337d-bc67bfa7c948",
+    "Name": "Adidas",
+    "TotalQuantity": 3,
+    "InStock": true
+  },
+  {
+    "Id": "dbca97c9-07a2-ef09-cf75-ed54680dd9db",
+    "Name": "Loafers",
+    "TotalQuantity": 3,
+    "InStock": true
+  }
+]

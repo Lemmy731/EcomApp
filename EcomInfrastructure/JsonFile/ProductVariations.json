@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "978b5a4a-3171-334a-42c1-94479d28a59a",
+    "Color": "Red",
+    "Size": 45,
+    "Quantity": 2,
+    "ProductId": "8fd24320-3f79-6765-26b2-ad0c6df5ea09"
+  },
+  {
+    "Id": "b76a1309-65a8-2417-097d-02920fef3ce8",
+    "Color": "White",
+    "Size": 45,
+    "Quantity": 1,
+    "ProductId": "8fd24320-3f79-6765-26b2-ad0c6df5ea09"
+  },
+  {
+    "Id": "4dce9070-553c-457f-8269-ea95032b4323",
+    "Color": "Red",
+    "Size": 40,
+    "Quantity": 2,
+    "ProductId": "586b4865-a995-e467-6762-c2e5c36507e7"
+  },
+  {
+    "Id": "1418b613-7e1b-b7a2-4ef5-97e3bca00a24",
+    "Color": "White",
+    "Size": 40,
+    "Quantity": 1,
+    "ProductId": "586b4865-a995-e467-6762-c2e5c36507e7"
+  },
+  {
+    "Id": "1e3a595f-825f-6290-95c9-98baa2785026",
+    "Color": "Red",
+    "Size": 50,
+    "Quantity": 2,
+    "ProductId": "cd134faf-f625-4885-337d-bc67bfa7c948"
+  },
+  {
+    "Id": "2e97ee9e-2b8d-9b34-4f7b-2f828fa3c7a1",
+    "Color": "White",
+    "Size": 50,
+    "Quantity": 1,
+    "ProductId": "cd134faf-f625-4885-337d-bc67bfa7c948"
+  },
+  {
+    "Id": "9c7349d8-3f25-22aa-fc2f-7e9640c4f72f",
+    "Color": "White",
+    "Size": 60,
+    "Quantity": 2,
+    "ProductId": "dbca97c9-07a2-ef09-cf75-ed54680dd9db"
+  },
+  {
+    "Id": "f7652815-bfb5-a22a-aa6b-116f8006df8f",
+    "Color": "Red",
+    "Size": 60,
+    "Quantity": 1,
+    "ProductId": "dbca97c9-07a2-ef09-cf75-ed54680dd9db"
+  }
+]
