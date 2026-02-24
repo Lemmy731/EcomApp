@@ -4,6 +4,7 @@ using EcomInfrastructure.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcomInfrastructure.Migrations
 {
     [DbContext(typeof(EcomDbContext))]
-    partial class EcomDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260221123714_UpdateProduct")]
+    partial class UpdateProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +87,6 @@ namespace EcomInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("ProductId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -94,8 +94,8 @@ namespace EcomInfrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Size")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<double>("Size")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

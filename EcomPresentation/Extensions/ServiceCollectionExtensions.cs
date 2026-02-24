@@ -5,6 +5,7 @@ using EcomApplication.Service.JWT.Implementaion;
 using EcomApplication.Service.JWT.Interface;
 using EcomDomain.Entity;
 using EcomInfrastructure.DataContext;
+using EcomInfrastructure.Repository;
 using EcomInfrastructure.Repository.Implementation;
 using EcomInfrastructure.Repository.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,9 +22,14 @@ namespace EcomPresentation.Extensions
     {
         public static IServiceCollection AddCustomService(this IServiceCollection services)
         {
+            services.AddScoped<IProductService,  ProductService>(); 
+            services.AddScoped<IProductRepository, ProductRepository>();        
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<ILoginUser, LoginUser>();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -79,9 +85,11 @@ namespace EcomPresentation.Extensions
             {
                 options.AddPolicy("AllowAll", policyBuilder =>
                 {
-                    policyBuilder.AllowAnyOrigin()
+                    policyBuilder
+                                .WithOrigins("http://localhost:3000")
                                 .AllowAnyMethod()
-                                .AllowAnyHeader();
+                                .AllowAnyHeader()
+                                .AllowCredentials();
                 });
                 options.AddPolicy("Filter", policyBuilder =>
                 {
@@ -121,6 +129,20 @@ namespace EcomPresentation.Extensions
                     ValidIssuer = issuer,
                     ValidAudience = audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var token = context.Request.Cookies["token"];
+
+                        if (!string.IsNullOrEmpty(token))
+                        {
+                            context.Token = token;
+                        }
+
+                        return Task.CompletedTask;
+                    }
                 };
             });
             return services;

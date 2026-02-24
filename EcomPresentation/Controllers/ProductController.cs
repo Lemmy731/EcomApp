@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Commons.GenericResponse;
+using EcomApplication.Service.Implementation;
+using EcomApplication.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,15 +11,28 @@ namespace EcomPresentation.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        public ProductController()
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-
+            _productService = productService;
         }
         [Authorize]
         [HttpGet("products")]
         public async Task<IActionResult> Products()
         {
-            return Ok();
+            try
+            {
+                var response = await _productService.GetProduct();
+                if (response.StatusCode == StatusCodes.Status200OK)
+                {
+                    return Ok(response.Data);
+                }
+                return BadRequest(response.Message);
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

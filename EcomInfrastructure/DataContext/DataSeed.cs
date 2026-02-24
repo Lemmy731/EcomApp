@@ -40,6 +40,7 @@ namespace EcomInfrastructure.DataContext
         }
         public static async Task SeedUserAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
+            //please use this email and password to log in
             const string Email = "johndoe@yopmail.com";
             const string Password = "Doe#123456";
 
@@ -72,7 +73,7 @@ namespace EcomInfrastructure.DataContext
         {
             var context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<EcomDbContext>();
             var prodVariation = await context.ProductVariations.ToListAsync();
-            if (prodVariation == null)
+            if (prodVariation.Count == 0)
             {
                 var baseDir = Directory.GetCurrentDirectory();
                 var productPath = File.ReadAllText(FilePath(baseDir, "C:\\Users\\hp\\source\\repos\\EcomPresentation\\EcomInfrastructure\\JsonFile\\Products.json"));
@@ -86,7 +87,9 @@ namespace EcomInfrastructure.DataContext
                         Id = item.Id,
                         Name = item.Name,
                         InStock = item.InStock,
-                        TotalQuantity = item.TotalQuantity
+                        TotalQuantity = item.TotalQuantity,
+                        Description = item.Description, 
+                        ImageUrl = item.ImageUrl
                     };
 
                     await context.Products.AddAsync(product);

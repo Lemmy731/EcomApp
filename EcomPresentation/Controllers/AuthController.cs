@@ -1,5 +1,6 @@
 ﻿using Commons.DTO.Auth;
 using EcomApplication.Service.Interface;
+using EcomDomain.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,24 @@ namespace EcomPresentation.Controllers
             try
             {
                 var response = await _authService.Login(loginDto);
+                if (string.IsNullOrEmpty(response.Data))
+                {
+                    return BadRequest("Token is null");
+                }
+                Response.Cookies.Append(
+                    "token",
+                    response.Data,
+
+                    new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.None,
+                        Expires = DateTime.UtcNow.AddHours(2)
+                    });
                 if (response.StatusCode == StatusCodes.Status200OK)
                 {
-                    return Ok(response);
+                    return Ok("token sent");
                 }
                 return BadRequest(response);
             }
